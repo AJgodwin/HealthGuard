@@ -1,0 +1,58 @@
+# =============================================================================
+# HealthGuard Backend - .gitignore
+# =============================================================================
+
+# ---- Node.js ----------------------------------------------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+
+# ---- Build output -----------------------------------------------------------
+/build/
+/dist/
+*.class
+*.pyc
+
+# ---- Environment & Secrets --------------------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.cert
+
+# ---- Logs -------------------------------------------------------------------
+*.log
+logs/
+server.log
+tts_error.txt
+tts_result.txt
+
+# ---- Temporary / Debug files ------------------------------------------------
+*.tmp
+*.temp
+.cache/
+fix_db_constraints*.js
+fix_appointments_schema.sql
+verify_fix.js
+test_booking.mjs
+test_sarvam.mjs
+test_tts.mjs
+schema.json
+
+# ---- OS / Editor files ------------------------------------------------------
+.DS_Store
+Thumbs.db
+ehthumbs.db
+.vscode/
+.idea/
+*.suo
+*.sw?
+
+# ---- Test / Coverage --------------------------------------------------------
+coverage/
+.nyc_output/
+junit.xml
