@@ -1,0 +1,297 @@
+/**
+ * SecureHealthIMS - Core Design System
+ * 
+ * Defines global design tokens, glassmorphism utilities,
+ * premium animations, and responsive layout adjustments.
+ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* HSL Modern Palette */
+  --primary-h: 226;
+  --primary-s: 100%;
+  --primary-l: 60%;
+  --primary: hsl(var(--primary-h), var(--primary-s), var(--primary-l));
+  --primary-glow: hsla(var(--primary-h), var(--primary-s), var(--primary-l), 0.3);
+
+  --accent-h: 280;
+  --accent: hsl(var(--accent-h), 80%, 65%);
+
+  --success: #00D1A0;
+  --warning: #FFB800;
+  --danger: #FF4D4D;
+
+  /* Modern Backgrounds */
+  --bg-dark: #050510;
+  --bg-light: #F8FAFF;
+
+  /* Glassmorphism System */
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-stroke: rgba(255, 255, 255, 0.12);
+  --glass-highlight: rgba(255, 255, 255, 0.2);
+  --blur: 20px;
+
+  /* Shadows */
+  --shadow-premium: 0 20px 50px rgba(0, 0, 0, 0.3);
+  --inner-glow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+
+  /* Radius */
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 32px;
+  --radius-full: 9999px;
+
+  /* Cursor */
+  --cursor-size: 20px;
+}
+
+[data-theme='light'] {
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(0, 0, 0, 0.05);
+  --glass-stroke: rgba(0, 0, 0, 0.08);
+  --text-primary: #1A1A1A;
+  --text-secondary: #666666;
+  --bg-current: var(--bg-light);
+}
+
+[data-theme='dark'],
+:root:not([data-theme='light']) {
+  --text-primary: #FFFFFF;
+  --text-secondary: #A0A0B0;
+  --bg-current: var(--bg-dark);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* Force custom cursor */
+}
+
+/* Hide custom cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  * {
+    cursor: auto !important;
+  }
+  #custom-cursor,
+  #custom-cursor-follower {
+    display: none !important;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, system-ui, sans-serif;
+  background-color: var(--bg-current);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+
+h1,
+h2,
+h3,
+h4,
+.title-font {
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Premium Mesh Gradient Background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 0% 0%, hsla(226, 100%, 20%, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 100% 0%, hsla(280, 80%, 20%, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 100% 100%, hsla(226, 100%, 20%, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 0% 100%, hsla(280, 80%, 20%, 0.15) 0%, transparent 50%);
+  filter: blur(80px);
+}
+
+/* Custom Cursor Implementation */
+#custom-cursor {
+  position: fixed;
+  width: var(--cursor-size);
+  height: var(--cursor-size);
+  background: white;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transition: transform 0.1s ease-out, width 0.2s, height 0.2s;
+  transform: translate(-50%, -50%);
+}
+
+#custom-cursor-follower {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transition: transform 0.15s ease-out, opacity 0.2s;
+  transform: translate(-50%, -50%);
+}
+
+/* Glassmorphism Utilities */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-premium), var(--inner-glow);
+  border-radius: var(--radius-md);
+}
+
+.glass-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-stroke);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  border-color: var(--glass-highlight);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shine {
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes reveal {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.text-shimmer {
+  background: linear-gradient(90deg,
+      var(--text-primary) 0%,
+      var(--primary) 25%,
+      var(--text-primary) 50%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 5s linear infinite;
+}
+
+.text-reveal {
+  animation: reveal 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+.float-subtle {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-current);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--glass-stroke);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--glass-highlight);
+}
+
+/* Inputs & Buttons Base */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  outline: none;
+}
+
+button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  :root {
+    --radius-lg: 20px;
+    --blur: 10px;
+  }
+
+  body {
+    font-size: 14px;
+  }
+
+  .title-font {
+    letter-spacing: -0.01em;
+  }
+
+  .glass-panel {
+    padding: 16px !important;
+  }
+
+  /* Adjust grid layouts globally if they use specific column counts */
+  .grid-mobile-1 {
+    grid-template-columns: 1fr !important;
+  }
+}
