@@ -1,0 +1,29 @@
+# =============================================================================
+# HealthGuard Backend - Code Owners
+# =============================================================================
+# These owners will be automatically requested for review when PRs modify
+# the matching files. Critical for healthcare security compliance.
+# =============================================================================
+
+# Default owner for all files
+* @AJgodwin
+
+# CI/CD configuration - requires review
+.github/ @AJgodwin
+
+# Security-critical middleware - ALWAYS requires review
+src/middleware/auth.middleware.js @AJgodwin
+src/middleware/rbac.middleware.js @AJgodwin
+src/middleware/consent.middleware.js @AJgodwin
+src/middleware/audit.middleware.js @AJgodwin
+
+# Database configuration - sensitive
+src/config/ @AJgodwin
+database/ @AJgodwin
+
+# All routes - API surface
+src/routes/ @AJgodwin
+
+# Configuration files
+package.json @AJgodwin
+.env.example @AJgodwin

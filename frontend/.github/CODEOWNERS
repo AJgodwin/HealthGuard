@@ -1,0 +1,20 @@
+# =============================================================================
+# HealthGuard Frontend - Code Owners
+# =============================================================================
+# These owners will be automatically requested for review when PRs modify
+# the matching files.
+# =============================================================================
+
+# Default owner for all files
+* @AJgodwin
+
+# CI/CD configuration
+.github/ @AJgodwin
+
+# Security-sensitive files
+src/context/AuthContext.jsx @AJgodwin
+src/api/ @AJgodwin
+
+# Configuration files
+package.json @AJgodwin
+vite.config.js @AJgodwin
